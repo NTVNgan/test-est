@@ -1,0 +1,183 @@
+<template>
+    <div class="flex items-center" :class="classComponent">
+        <div
+            class="avatar-content flex items-center justify-center flex-shrink-0 rounded-full"
+            :class="[classAtt, bgAvatar, image ? 'border border-neutrals-100' : '' ]"
+            :style="{
+                backgroundColor: showBackgroundCompulsory
+                    ? bgAvatar
+                    : image !== ''
+                    ? ''
+                    : bgAvatar
+                    ? bgAvatar
+                    : '#E9E9EC',
+            }"
+        >
+            <template v-if="!showImageTiny">
+                <template v-if="!userRemoved">
+                    <img
+                        v-if="image !== ''"
+                        :class="size"
+                        class="rounded-full object-cover w-inherit"
+                        :src="image"
+                        alt=""
+                    />
+                </template>
+                <template v-else>
+                    <img
+                        :class="size"
+                        class="rounded-full object-cover w-inherit"
+                        src="../../assets/images/no-user.svg"
+                        alt=""
+                    />
+                </template>
+                <div v-if="image === ''" :class="classText">{{ textAvatar }}</div>
+            </template>
+            <template v-else>
+                <img v-if="checkImage" :class="size" class="rounded-full object-cover img-tiny w-inherit" :src="image" alt="" />
+                <div v-else :class="classText">{{ textAvatar }}</div>
+            </template>
+            <div v-if="online !== 3" class="dot-status" :class="[size, {'online bg-success-3': online === 1, 'idle bg-warning-3': online === 5}]"></div>
+        </div>
+        <div v-if="labelShow" class="ml-8p text-14 font-normal text-neutrals-900 truncate">
+            {{ labelAvatar }}
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, toRefs, computed, ref } from 'vue';
+
+export default defineComponent({
+    name: 'AvatarComponent',
+    props: {
+        labelShow: {
+            // Show/hide name label
+            type: Boolean,
+            require: false,
+            default: null,
+        },
+        labelAvatar: {
+            // Name label
+            type: String,
+            require: true,
+            default: '',
+        },
+        size: {
+            // Width, Height
+            type: String,
+            require: false,
+            default: 'h-40 w-40',
+        },
+        image: {
+            // Image avatar
+            type: String,
+            require: false,
+            default: '',
+        },
+        classText: {
+            // Class for text avatar
+            type: String,
+            require: false,
+            default: 'text-white',
+        },
+        classComponent: {
+            // Add class for margin, padding or any style for component
+            type: String,
+            require: false,
+            default: '',
+        },
+        bgAvatar: {
+            type: String,
+            default: '',
+        },
+        online: {
+            type: Number,
+            default: 3,
+        },
+        showImageTiny: {
+            type: Boolean,
+            default: false,
+        },
+        userRemoved: {
+            type: Boolean,
+            default: false,
+        },
+        showBackgroundCompulsory: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    setup(props) {
+        const imageExtension = ref<any>(['img', 'png']);
+        const { labelAvatar } = toRefs(props);
+        const { image } = toRefs(props);
+        const textAvatar = computed(() => {
+            if (labelAvatar.value == null) return '';
+            const nameToArray = labelAvatar.value.split(' ');
+            const fullName = nameToArray.slice(0, nameToArray.length).map(item => item.toUpperCase().substring(0, 1));
+            let name = [fullName[0]];
+            if (fullName.length > 1) name = [fullName[0], fullName[fullName.length - 1]];
+            return name.join('');
+        });
+
+        const checkImage = computed(() => {
+            if (image.value === '' || image.value === null || image.value === 'null') return false;
+            const imageArray = image.value.split('.');
+            if (imageArray.length < 2) return false;
+            return imageExtension.value.includes(imageArray[imageArray.length - 1]);
+        });
+
+        const classAtt = computed(() => {
+            return {
+                'h-124 w-124 text-48 font-bold': props.size == 'extra-large' || props.size == 'l',
+                'h-64 w-64 text-24 font-bold': props.size == 'large' || props.size == 'l',
+                'h-40 w-40 text-16 font-medium': props.size == 'medium' || props.size == 'm',
+                'h-32 w-32 text-14 font-medium': props.size == 'small' || props.size == 's',
+                'h-20 w-20 text-10 font-normal': props.size == 'extra-small' || props.size == 'xs',
+            };
+        });
+
+        return {
+            textAvatar,
+            classAtt,
+            checkImage,
+            imageExtension,
+        };
+    },
+});
+</script>
+
+<style lang="scss" scoped>
+.avatar-content {
+    position: relative;
+    .dot-status {
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+        border-radius: 50%;
+        box-sizing: content-box;
+        &.xs{
+            width: 6px;
+            height: 6px;
+            border: 1px solid #ffffff;
+        }
+        &.small{
+            border: 1px solid #ffffff;
+        }
+        &.medium{
+            border: 2px solid #ffffff;
+        }
+    }
+    .rounded-full {
+        height: 100%;
+    }
+    .img-tiny {
+        height: 70%;
+        width: 70%;
+    }
+}
+</style>
+

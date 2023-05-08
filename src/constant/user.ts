@@ -1,0 +1,17 @@
+const STATUS = {
+    DELETED: 0,
+    ACTIVATED: 1,
+    INACTIVED: 3,
+    EXPIRED_EMAIL: 999,
+    INACTIVED_EMAIL: 998,
+    LOCKED: 5,
+}
+
+
+const ONLINE_STATUS = {
+    ONLINE: 1,
+    OFFLINE: 3,
+    IDLE: 5
+}
+
+export { STATUS, ONLINE_STATUS }

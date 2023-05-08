@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        "target": "es2020",
+        "module": "es2020",
+        "strict": true,
+        "jsx": "preserve",
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "baseUrl": ".",
+        "allowJs": true,
+        "noImplicitThis": false,
+        "resolveJsonModule": true,
+        "types": [
+            "webpack-env",
+            "jest"
+        ],
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "lib": [
+            "es2020",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ]
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "tests/**/*.ts",
+        "tests/**/*.tsx", 
+        "src/firebase.ts",
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

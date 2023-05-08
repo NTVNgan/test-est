@@ -1,0 +1,14 @@
+.slide-fade-up-enter-active,
+.slide-fade-up-leave-active {
+    transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.slide-fade-up-enter-from,
+.slide-fade-up-leave-to {
+    opacity: 0;
+    transform: translateY(50px);
+}
+.slide-fade-up-enter-to,
+.slide-fade-up-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}

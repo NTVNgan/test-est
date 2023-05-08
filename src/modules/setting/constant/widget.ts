@@ -1,0 +1,7 @@
+const REQUIRE_EMAIL_FIRST_MESSAGE = {
+    NEVER: 0,
+    ONLY_OUTSIDE: 1,
+    ALWAY: 2,
+};
+
+export { REQUIRE_EMAIL_FIRST_MESSAGE };

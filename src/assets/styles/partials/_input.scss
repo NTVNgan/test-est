@@ -1,0 +1,42 @@
+.input--auth {
+    border-radius: 10px;
+    .input-comp {
+        height: 56px;
+        border-radius: 10px;
+        border-color: transparent;
+        box-shadow: 0px 0px 2px rgba(22, 76, 182, 0.2), 0px 2px 20px rgba(22, 76, 182, 0.1);
+    }
+    &:focus-within {
+        box-shadow: 0 0 0 2px #bfcef3;
+    }
+    &:hover {
+        box-shadow: 0 0 0 3px #bfcef3 !important;
+    }
+    input {
+        height: 100%;
+        font-size: 16px;
+        line-height: 24px;
+        &::placeholder {
+            color: #b4b4be;
+        }
+    }
+    &.ring-error {
+        border-color: #ec2b08;
+        &:focus-within {
+            box-shadow: 0 0 0 2px #ffe5e5;
+        }
+        &:hover {
+            box-shadow: 0 0 0 3px #ffe5e5 !important;
+        }
+    }
+    &.input--disabled,
+    &.input--disabled.ring-error {
+        background-color: #f6f6f8;
+        border-color: transparent;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 2px 20px rgba(0, 0, 0, 0.1);
+    }
+    .input__suffix-password {
+        margin-right: 16px;
+        color: #6b6b7b;
+    }
+}

@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Gibson';
+    src: url('./fonts/Gibson-SemiBold/Gibson-SemiBold.eot');
+    src: url('./fonts/Gibson-SemiBold/Gibson-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Gibson-SemiBold/Gibson-SemiBold.woff2') format('woff2'),
+        url('./fonts/Gibson-SemiBold/Gibson-SemiBold.woff') format('woff'),
+        url('./fonts/Gibson-SemiBold/Gibson-SemiBold.ttf') format('truetype'),
+        url('./fonts/Gibson-SemiBold/Gibson-SemiBold.svg#Gibson-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
